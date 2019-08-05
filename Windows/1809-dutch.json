@@ -1,0 +1,112 @@
+{
+  "variables": {
+    "name":                   "Win10-1809b615-dutch-Template",
+    "host":                   "10.129.1.20",
+
+    "vcenter_host":           "vcsa-01.lab.local",
+    "vcenter_admin" :         "administrator@vsphere.local",
+    
+    "vcenter_password":       "VMware01!",
+    "wimrm_user":             "administrator",
+    "winrm_passwd":           "password",
+    
+    "vcenter_datastore":      "SSD-VMFS-01",
+    "vcenter_cluster":        "cl-mgmt",
+    "vcenter_network":        "vlan-srv-1",
+    "operating_system_vm":    "windows9_64Guest",
+    "vm_cpus":                "2",
+    "vm_memory":              "4096",
+    "vm_memory_reserve_all":  "true",
+    "vm_disk_size":           "61440",
+    "vm_disk_thin":           "true",
+    "vm_disk_controller":     "lsilogic-sas",
+    "vm_network_card":        "vmxnet3",
+    "vm_hardwareversion":     "14",
+    "vm_hotplug":             "FALSE",
+    "vm_logging":             "FALSE",
+
+    "win10_iso":              "[SSD-VMFS-01] iso/Win10x64180917763615.iso",
+    "vmware_tools_iso":       "[SSD-VMFS-01] iso/VMware-tools-windows-10.3.10-12406962.iso",
+    "floppy_image":           "[SSD-VMFS-01] iso/pvscsi.flp"
+
+  },
+
+  "builders": [
+    {
+      "type":                 "vsphere-iso",
+      "vcenter_server":       "{{ user `vcenter_host` }}",
+      "username":             "{{ user `vcenter_admin` }}",
+      "password":             "{{ user `vcenter_password` }}",
+      "insecure_connection":  "true",
+      "datastore":            "{{ user `vcenter_datastore` }}",
+      "cluster":              "{{ user `vcenter_cluster` }}",
+      "network":              "{{ user `vcenter_network` }}",
+
+      "vm_name":              "{{ user `name` }}",
+      "host":                 "{{ user `host` }}",
+
+      "guest_os_type":        "{{ user `operating_system_vm` }}",
+
+      "communicator":         "winrm",
+      "winrm_username":       "{{ user `wimrm_user` }}",
+      "winrm_password":       "{{ user `winrm_passwd` }}",
+      "winrm_use_ssl":        false,
+      "winrm_insecure":       true,
+      "winrm_timeout":        "5m",
+      
+      "CPUs":                 "{{ user `vm_cpus` }}",
+      "RAM":                  "{{ user `vm_memory` }}",
+      "RAM_reserve_all":      "{{ user `vm_memory_reserve_all` }}",
+
+      "disk_controller_type": "{{ user `vm_disk_controller` }}",
+      "disk_size":            "{{ user `vm_disk_size` }}",
+      "disk_thin_provisioned":"{{ user `vm_disk_thin` }}",
+      "network_card":         "{{ user `vm_network_card` }}",
+      "vm_version":           "{{ user `vm_hardwareversion` }}",
+
+      "configuration_parameters": {
+        "devices.hotplug":      "{{ user `vm_hotplug` }}",
+        "logging":              "{{ user `vm_logging` }}"
+
+      },
+
+      "iso_paths": [
+                                "{{ user `win10_iso` }}",
+                                "{{ user `vmware_tools_iso` }}"
+      ],
+
+      "floppy_files": [
+                                "{{template_dir}}/setup/"
+      ],
+      "floppy_img_path":        "{{ user `floppy_image` }}"
+    }
+  ],
+ 
+  "provisioners": [
+    {
+      "type": "windows-shell",
+      "inline": ["mkdir c:\\install"]
+    },
+  { 
+    "type": "powershell",
+    "inline": "<# Set Execution policy#> Set-ExecutionPolicy bypass -Force -Confirm:$false" 
+  },
+    {
+      "type": "powershell",
+      "elevated_user": "administrator",
+      "elevated_password": "password",
+      "scripts": [
+      "./setup/download.ps1"
+      ]
+    },
+    {
+      "type": "powershell",
+      "elevated_user": "administrator",
+      "elevated_password": "password",
+      "scripts": [
+      "./setup/onedrive-remove.ps1",
+      "./setup/disable-autolog.ps1"
+      ]
+    }
+  ]
+}
