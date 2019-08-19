@@ -25,7 +25,7 @@
     "vm_hotplug":             "FALSE",
     "vm_logging":             "FALSE",
 
-    "win10_iso":              "[SSD-VMFS-01] iso/Win10x64180917763615.iso",
+    "win10_iso":              "[SSD-VMFS-01] iso/Win10-1809-aug.iso",
     "vmware_tools_iso":       "[SSD-VMFS-01] iso/VMware-tools-windows-10.3.10-12406962.iso",
     "floppy_image":           "[SSD-VMFS-01] iso/pvscsi.flp"
 
@@ -96,7 +96,24 @@
       "elevated_user": "administrator",
       "elevated_password": "password",
       "scripts": [
-      "./setup/download.ps1"
+        "./setup/download.ps1",
+        "./setup/install_horizon_agent.ps1",
+        "./setup/remove_onedrive.ps1",
+        "./setup/install_windowsfeatures.ps1"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "powershell",
+      "pause_before": "120s",
+      "inline": ["dir c:\\"]
+    },
+    {
+      "type": "windows-shell",
+      "scripts": [
+        "./setup/install_uem_agent.bat"
       ]
     },
     {
@@ -104,7 +121,6 @@
       "elevated_user": "administrator",
       "elevated_password": "password",
       "scripts": [
-      "./setup/onedrive-remove.ps1",
       "./setup/disable-autolog.ps1"
       ]
     }
