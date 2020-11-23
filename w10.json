@@ -1,0 +1,134 @@
+{
+    "builders": [
+      {
+        "CPUs": "{{ user `vm_cpus` }}",
+        "RAM": "{{ user `vm_memory` }}",
+        "RAM_reserve_all": "{{ user `vm_memory_reserve_all` }}",
+        "cluster": "{{ user `vcenter_cluster` }}",
+        "communicator": "winrm",
+        "configuration_parameters": {
+          "devices.hotplug": "{{ user `vm_hotplug` }}",
+          "logging": "{{ user `vm_logging` }}",
+          "svga.autodetect": "FALSE",
+          "svga.numDisplays" : "2"
+        },
+        "create_snapshot": true,
+        "remove_cdrom": true,
+        "Notes": "Windows 10 2004 Instant Clone Image build using Packer {{isotime \"2006-01-02-15-04\"}}",
+        "video_ram": 262144,
+        "datastore": "{{ user `vcenter_datastore` }}",
+        "disk_controller_type": "{{ user `vm_disk_controller` }}",
+        "floppy_files": [
+          "{{template_dir}}/setup/"
+        ],
+        "floppy_img_path": "{{ user `floppy_image` }}",
+        "guest_os_type": "{{ user `operating_system_vm` }}",
+        "host": "{{ user `host` }}",
+        "insecure_connection": "true",
+        "iso_paths": [
+          "{{ user `win10_iso` }}",
+          "{{ user `vmware_tools_iso` }}"
+        ],
+        "network_adapters": [
+          {
+            "network": "{{ user `vcenter_network` }}",
+            "network_card": "{{ user `vm_network_card` }}"
+          }
+        ],
+        "password": "{{ user `vcenter_password` }}",
+        "storage": [
+          {
+            "disk_size": "{{ user `vm_disk_size` }}",
+            "disk_thin_provisioned": "{{ user `vm_disk_thin` }}"
+          }
+        ],
+        "type": "vsphere-iso",
+        "username": "{{ user `vcenter_admin` }}",
+        "vcenter_server": "{{ user `vcenter_host` }}",
+        "vm_name": "{{ user `name` }}",
+        "vm_version": "{{ user `vm_hardwareversion` }}",
+        "winrm_insecure": true,
+        "winrm_password": "{{ user `winrm_passwd` }}",
+        "winrm_timeout": "5m",
+        "winrm_use_ssl": false,
+        "winrm_username": "{{ user `wimrm_user` }}"
+      }
+    ],
+    "provisioners": [
+      
+      {
+        "inline": [
+          "mkdir c:\\temp",
+          "netsh advfirewall set allprofiles state off",
+          "certutil -addstore Root a:\\selfsignedCA.pem" 
+        ],
+        "type": "windows-shell"
+      },
+      {
+        "elevated_password": "P@ssword!",
+        "elevated_user": "administrator",
+        "scripts": [
+          "./setup/rename_off.ps1"
+        ],
+        "type": "powershell"
+      },
+      {
+        "elevated_password": "P@ssword!",
+        "elevated_user": "administrator",
+        "scripts": [
+          "./setup/remove_onedrive.ps1"
+        ],
+        "type": "powershell"
+      },
+      {
+        "filters": [
+          "exclude:$_.Title -like '*Preview*'",
+          "include:$true"
+        ],
+        "search_criteria": "IsInstalled=0",
+        "type": "windows-update",
+        "update_limit": 25
+      },
+      {
+        "elevated_password": "P@ssword!",
+        "elevated_user": "administrator",
+        "scripts": [
+          "./setup/add-domain.ps1"
+        ],
+        "type": "powershell"
+      },
+      {
+        "elevated_password": "P@ssword!",
+        "elevated_user": "administrator",
+        "scripts": [
+          "./setup/disable-autolog.ps1"
+        ],
+        "type": "powershell"
+      }
+    ],
+    "variables": {
+      "host": " ",
+      "name": "GI-WI-2004-003",
+      "operating_system_vm": "windows9_64Guest",
+      "vcenter_admin": "administrator@vsphere.local",
+      "vcenter_cluster": " ",
+      "vcenter_datastore": " ",
+      "vcenter_host": " ",
+      "vcenter_network": " ",
+      "vcenter_password": " ",
+      "vm_cpus": "2",
+      "vm_disk_controller": "lsilogic-sas",
+      "vm_disk_size": "61440",
+      "vm_disk_thin": "true",
+      "vm_hardwareversion": "15",
+      "vm_hotplug": "FALSE",
+      "vm_logging": "FALSE",
+      "vm_memory": "6144",
+      "vm_memory_reserve_all": "false",
+      "vm_network_card": "vmxnet3",
+      "vmware_tools_iso": "[datastore] ISO/windows.iso",
+      "wimrm_user": "administrator",
+      "win10_iso": "[datastore] ISO/SW_DVD9_Win_Pro_10_2004.4_64BIT_Dutch_Pro_Ent_EDU_N_MLF_-2_X22-36965.ISO",
+      "winrm_passwd": "P@ssword!"
+    }
+  }
