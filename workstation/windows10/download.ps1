@@ -3,11 +3,8 @@
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 # Variables
-$downloadfolder = 'C:\packer1\'
+$downloadfolder = 'C:\packer2\'
 $github = 'https://github.com/ibeerens/Packer/archive/refs/heads/main.zip'
-
-# Create folder
-New-Item -Path $downloadfolder -ItemType Directory
 
 # Create Folder
 $checkdir = Test-Path -Path $downloadfolder
