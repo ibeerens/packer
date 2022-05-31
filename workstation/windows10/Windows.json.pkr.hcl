@@ -1,3 +1,5 @@
+// https://www.packer.io/plugins/builders/vmware/iso
+
 // Plugins
 // Windows Update plug-in https://github.com/rgl/packer-plugin-windows-update
 // https://github.com/hashicorp/packer-plugin-vmware
@@ -19,9 +21,9 @@ packer {
   }
 }
 
-variable "name" {
+variable "vm_name" {
   type    = string
-  description = "Golden Image name"
+  description = "Image name"
 }
 
 variable "operating_system_vm" {
@@ -102,6 +104,7 @@ variable "winrm_password" {
 }
 
 source "vmware-iso" "GI-W1021H2-02" {
+  vm_name = var.vm_name
   // Hardware specs
   cpus = var.vm_cpus
   cores = var.vm_cores
