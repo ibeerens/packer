@@ -36,8 +36,8 @@ Set-Location $downloadfolder
 # Packer Version
 .\packer.exe -v
 
-# Pabuilcker Init
+# Packer Init
 .\packer.exe init c:\packer\Windows.json.pkr.hcl
 
-# Packer
+# Packer build
 .\packer.exe build -force -var-file=C:\packer\win10-std.auto.pkrvars.hcl -var "winrm_username=administrator" -var "winrm_password=ThisisagoodPassword!" Windows.json.pkr.hcl
