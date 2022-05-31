@@ -1,9 +1,4 @@
 # Packer VMware Workstation Windows 10
 
-Steps
-
-Packer build
-
-```
-packer build -force -var-file=c:\packer\\win10-std.auto.pkrvars.hcl -var "winrm_username=administrator" -var "winrm_password=ThisisagoodPassword!" Windows.json.pkr.hcl
-```
+For more information visit:
+https://www.ivobeerens.nl/2022/05/31/build-a-windows-10-image-with-packer-using-vmware-workstation/
