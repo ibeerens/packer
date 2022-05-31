@@ -1,5 +1,5 @@
 # Variables
-$downloadfolder = 'C:\packer1\'
+$downloadfolder = 'C:\packer\'
 
 # Go to the Packer download folder
 Set-Location $downloadfolder
@@ -8,7 +8,8 @@ Set-Location $downloadfolder
 .\packer.exe -v
 
 # Download Packer plugins
-.\packer.exe init c:\packer\Windows.json.pkr.hcl
+.\packer.exe init "${downloadfolder}windows.json.pkr.hcl"
+
 
 # Packer build
-.\packer.exe build -force -var-file=C:\packer\win10-std.auto.pkrvars.hcl -var "winrm_username=administrator" -var "winrm_password=ThisisagoodPassword!" windows.json.pkr.hcl
+.\packer.exe build -force -var-file="${downloadfolder}win10-std.auto.pkrvars.hcl" -var "winrm_username=administrator" -var "winrm_password=ThisisagoodPassword!" "${downloadfolder}windows.json.pkr.hcl"
