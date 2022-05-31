@@ -9,16 +9,7 @@
 			<SystemLocale>nl-NL</SystemLocale>
 			<UILanguage>en-US</UILanguage>
 			<UserLocale>nl-NL</UserLocale>
-			</component>
-			<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
-			<SetupUILanguage>
-			<UILanguage>en-US</UILanguage>
-			</SetupUILanguage>
-			<InputLocale>0413:00000413</InputLocale>
-			<SystemLocale>nl-NL</SystemLocale>
-			<UILanguage>en-US</UILanguage>
-			<UserLocale>nl-NL</UserLocale>
-			</component>
+		</component>
         <component name="Microsoft-Windows-PnpCustomizationsWinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <DriverPaths>
                 <PathAndCredentials wcm:action="add" wcm:keyValue="A">
@@ -119,7 +110,7 @@
                 <SynchronousCommand wcm:action="add">
                     <Order>3</Order>
                     <!-- VMware Tools installation -->
-                    <CommandLine>powershell -ExecutionPolicy Bypass -File a:\vmtools.ps1</CommandLine>
+                    <CommandLine>powershell -ExecutionPolicy Bypass -File a:\install-vmtools.ps1</CommandLine>
                 </SynchronousCommand>
                <SynchronousCommand wcm:action="add">
                    <CommandLine>powershell -ExecutionPolicy Bypass -File a:\enable-winrm.ps1</CommandLine>
