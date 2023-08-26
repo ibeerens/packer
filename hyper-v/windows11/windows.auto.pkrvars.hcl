@@ -17,6 +17,6 @@ guest_additions_mode = "disable"
 vm_network      = "VMnet8"
 
 // Removeable media
-win_iso         = "c:/iso/en-us_windows_11_business_editions_version_22h2_updated_june_2023_x64_dvd_69a45bf5.iso"
+win_iso         = "c:/iso/windows11-us-ent.iso"
 // In Powershell use the "get-filehash" command to find the checksum of the ISO
-win_checksum    = "0AF18150D416D0449938203370DBC60EA5D78AFE0779E2732795982DB787BB03"
+win_checksum    = "B4FB9A56E1A7B940B97664CE26E2B27E467A1E0F0058D8BE7781920D8E6A6FF5"
