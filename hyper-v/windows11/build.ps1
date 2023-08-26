@@ -1,7 +1,7 @@
+# Packer Run Script
 # Enable TLS 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
-# Packer Run Script
+# Speed up invoke-webrequest
 $ProgressPreference = 'SilentlyContinue'
 
 # Variables
@@ -53,5 +53,4 @@ Set-Location $win11_downloadfolder
 .\packer.exe fmt -var-file="${$win11_downloadfolder}{$packer_variable}" "${$win11_downloadfolder}${packer_config}"
 
 # Packer build
-# .\packer.exe build -force -var-file="${downloadfolder}${packer_variable}" -var "winrm_username=Admin" -var "winrm_password=password" "${downloadfolder}${packer_config}"
 .\packer.exe build -force -var-file="${$win11_downloadfolder}${packer_variable}" -var "winrm_username=$winrm_admin" -var "winrm_password=$winrm_password" "${$win11_downloadfolder}${packer_config}"
