@@ -1,7 +1,7 @@
 # Packer Run Script
 # Enable TLS 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-# Speed up invoke-webrequest
+# Speed up the invoke-webrequest command
 $ProgressPreference = 'SilentlyContinue'
 
 # Variables
