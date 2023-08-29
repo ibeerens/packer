@@ -15,8 +15,8 @@ $downloadfolder = "C:\temp\" # Packer location installed
 $win11_downloadfolder = "C:\Temp\packer-main\hyper-v\windows11\"
 $packer_config = "windows.json.pkr.hcl" #Packer config file
 $packer_variable = "windows.auto.pkrvars.hcl" # Packer variable file
-$winrm_admin = "admin"
-$winrm_password = "password"
+$env:winrm_admin = "admin"
+$env:winrm_password = "password"
 $github = "https://github.com/ibeerens/packer/archive/refs/heads/main.zip"
 $product = "packer"
 $packer_uri = "https://developer.hashicorp.com/packer/downloads"
@@ -64,4 +64,4 @@ Set-Location $win11_downloadfolder
 .\packer.exe validate .
 
 # Packer build
-.\packer.exe build -force -var-file="${$win11_downloadfolder}${packer_variable}" -var "winrm_username=$winrm_admin" -var "winrm_password=$winrm_password" "${$win11_downloadfolder}${packer_config}"
+.\packer.exe build -force -var-file="${$win11_downloadfolder}${packer_variable}" -var "winrm_username=$env:winrm_admin" -var "winrm_password=$env:winrm_password" "${$win11_downloadfolder}${packer_config}"
