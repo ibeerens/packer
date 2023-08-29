@@ -6,7 +6,7 @@
 // ISO: https://answers.microsoft.com/en-us/windows/forum/all/downloading-the-oscdimg-utility-for-windows-11/bd0b478d-6df0-4dd9-8cae-3adb469405a0
 
 packer {
-  required_version = ">= 1.9.2"
+  required_version = ">= 1.9.4"
   required_plugins {
     vmware = {
       version = ">= 1.1.1"

@@ -14,7 +14,7 @@ enable_virtualization_extensions = "false"
 guest_additions_mode = "disable"
 
 // Use the NAT Network
-vm_network      = "VMnet8"
+// vm_network      = "VMnet8"
 
 // Removeable media
 win_iso         = "c:/iso/windows11-us-ent.iso"
