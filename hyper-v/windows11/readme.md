@@ -16,5 +16,11 @@ Steps:
     C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\x86\Oscdimg
 ![Alt text](path.png)
 - Run the build.ps1 script. This script will download the latest version of Packer and create a Windows 11 VM with secure boot and TPM enabled.
-
-
+![Alt text](install.png)
+- Start the Hyper-V Manager
+- Select Import Virtual Machine
+- Browse to the created image folder C:\Temp\packer-main\hyper-v\windows11\output-windows11\
+- Select the VM
+- Register the VM in-place
+- Start the VM
+![Alt text](win11.png)

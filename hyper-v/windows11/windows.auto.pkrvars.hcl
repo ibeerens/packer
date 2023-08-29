@@ -16,6 +16,10 @@ guest_additions_mode = "disable"
 // Use the NAT Network
 // vm_network      = "VMnet8"
 
+// WinRM 
+winrm_username  = "admin"
+winrm_password  = "password"
+
 // Removeable media
 win_iso         = "c:/iso/windows11-us-ent.iso"
 // In Powershell use the "get-filehash" command to find the checksum of the ISO

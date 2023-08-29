@@ -61,6 +61,7 @@ variable "winrm_username" {
 variable "winrm_password" {
   type        = string
   description = "winrm password"
+  sensitive   = true
 }
 
 variable "switch_name" {
@@ -112,30 +113,30 @@ source "hyperv-iso" "windows11" {
   boot_command = ["a<enter><wait>"]
   boot_wait    = "2s"
   // VM specifications
-  vm_name               = var.vm_name
-  cpus                  = var.vm_cpus
-  memory                = var.vm_memory
-  enable_dynamic_memory = var.dynamic_memory
-  disk_size             = var.vm_disk_size
-  skip_export           = var.skip_export
-  switch_name           = var.switch_name
-  iso_checksum          = var.win_checksum
-  iso_url               = var.win_iso
-  headless              = var.headless
-  generation            = var.generation
-  enable_secure_boot    = var.secure_boot
-  enable_tpm            = var.tpm
+  vm_name                          = var.vm_name
+  cpus                             = var.vm_cpus
+  memory                           = var.vm_memory
+  enable_dynamic_memory            = var.dynamic_memory
+  disk_size                        = var.vm_disk_size
+  skip_export                      = var.skip_export
+  switch_name                      = var.switch_name
+  iso_checksum                     = var.win_checksum
+  iso_url                          = var.win_iso
+  headless                         = var.headless
+  generation                       = var.generation
+  enable_secure_boot               = var.secure_boot
+  enable_tpm                       = var.tpm
   enable_virtualization_extensions = var.enable_virtualization_extensions
-  guest_additions_mode  = var.guest_additions_mode
+  guest_additions_mode             = var.guest_additions_mode
   // WinRM config
-  communicator          = "winrm"
-  winrm_port            = "5985"
-  winrm_username        = var.winrm_username
-  winrm_password        = var.winrm_password
-  winrm_timeout         = "12h"
-  shutdown_command      = "shutdown /s /t 10 /f"
-  cd_files              = ["./setup/*"]
-  cd_label              = "scripts"
+  communicator     = "winrm"
+  winrm_port       = "5985"
+  winrm_username   = var.winrm_username
+  winrm_password   = var.winrm_password
+  winrm_timeout    = "12h"
+  shutdown_command = "shutdown /s /t 10 /f"
+  cd_files         = ["./setup/*"]
+  cd_label         = "scripts"
 }
 
 build {
