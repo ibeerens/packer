@@ -4,6 +4,7 @@ Tested:
 - Windows 11 Enterprise with the Hyper-V role enabled
 
 Pre-requested:
+- Make sure the Hyper-V role is enabled
 - Download the Windows 11 ISO and save the ISO to the following location:  c:\iso
 - Example: https://www.ivobeerens.nl/2021/05/19/quick-tip-download-the-latest-windows-10-iso-file/
 - Get the hash of the ISO file with the Powershell get-filehash command

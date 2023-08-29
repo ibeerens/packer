@@ -1,3 +1,10 @@
+<#
+  Description: Download the latest version of Hashicorp Packer version and create a Windows 11 VM in Hyper-V
+  Created by: Ivo Beerens www.ivobeerens.nl
+  Change Log:
+    Augustus 29, 2023 v1.0 Final version Ivo Beerens
+#>
+
 # Packer Run Script
 # Enable TLS 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
