@@ -14,13 +14,13 @@ Steps:
 - Install the Windows Assessment and Deployment Kit (32-bits version). https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install#download-the-adk-for-windows-11-version-22h2
 - Add the following location the the system path variable: 
     C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\x86\Oscdimg
-![Alt text](path.png)
+![Alt text](/img/path.png)
 - Run the build.ps1 script. This script will download the latest version of Packer and create a Windows 11 VM with secure boot and TPM enabled.
-![Alt text](install.png)
+![Alt text](img/install.png)
 - Start the Hyper-V Manager
 - Select Import Virtual Machine
 - Browse to the created image folder C:\Temp\packer-main\hyper-v\windows11\output-windows11\
 - Select the VM
 - Register the VM in-place
 - Start the VM
-![Alt text](win11.png)
+![Alt text](img/win11.png)
