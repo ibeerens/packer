@@ -1,1 +1,1 @@
-Packer vSphere Windows 10
+Packer VMware Workstation Windows 10
