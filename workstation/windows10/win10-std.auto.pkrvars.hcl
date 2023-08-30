@@ -1,4 +1,4 @@
-// VM
+// VM config
 vm_name					= 	"GI-W10-001" 
 operating_system_vm 	= 	"windows9-64"
 vm_firmware				=	"bios"
