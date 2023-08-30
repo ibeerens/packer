@@ -50,6 +50,9 @@ Remove-Item $packdownload
 # Go to the Packer download folder
 Set-Location $win11_downloadfolder
 
+# Pause the script to adjust the variables
+Pause
+
 # Show Packer Version
 .\packer.exe -v
 
