@@ -12,9 +12,7 @@ Pre-requested:
 Steps:
 - Change the windows-auto-pkvars.hcl file and adjust the variables
 - Install the Windows Assessment and Deployment Kit (32-bit version). https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install#download-the-adk-for-windows-11-version-22h2
-- Add the following location the the system path variable: 
-    C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\x86\Oscdimg
-
+- Add the following location the the system path variable: C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\x86\Oscdimg
 ![Alt text](img/path.png)
 
 - Run the build.ps1 script. This script will download the latest version of Packer and create a Windows 11 VM with secure boot and TPM enabled.
@@ -25,4 +23,5 @@ Steps:
 - Select the VM
 - Register the VM in-place
 - Start the VM
+
 ![Alt text](img/win11.png)
