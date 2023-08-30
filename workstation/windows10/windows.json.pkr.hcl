@@ -103,7 +103,7 @@ variable "winrm_password" {
   description = "winrm password"
 }
 
-source "vmware-iso" "GI-W1021H2-02" {
+source "vmware-iso" "windows10" {
   vm_name = var.vm_name
   // Hardware specs
   cpus                 = var.vm_cpus
@@ -134,18 +134,7 @@ source "vmware-iso" "GI-W1021H2-02" {
 }
 
 build {
-  sources = ["source.vmware-iso.GI-W1021H2-02"]
-
-  provisioner "powershell" {
-    elevated_user     = var.winrm_username
-    elevated_password = var.winrm_password
-    scripts           = ["./setup/install-evergreen.ps1"]
-  }
-
-  provisioner "windows-restart" {
-    restart_check_command = "powershell -command \"& {Write-Output 'restarted.'}\""
-    restart_timeout       = "20m"
-  }
+  sources = ["source.vmware-iso.windows10"]
 
   provisioner "windows-update" {
     pause_before    = "30s"

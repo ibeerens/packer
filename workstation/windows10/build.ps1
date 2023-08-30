@@ -62,4 +62,4 @@ Set-Location $win10_downloadfolder
 
 # Packer build
 # .\packer.exe build -force -var-file="${$win11_downloadfolder}${packer_variable}" "${$win11_downloadfolder}${packer_config}"
-.\packer.exe build -force -var-file="${downloadfolder}win10-std.auto.pkrvars.hcl" -var "winrm_username=administrator" -var "winrm_password=ThisisagoodPassword!" "${downloadfolder}windows.json.pkr.hcl"
+.\packer.exe build -force -var-file="${win10_downloadfolder}${packer_variable}" -var "winrm_username=administrator" -var "winrm_password=ThisisagoodPassword!" "${win10_downloadfolder}${packer_config}"
