@@ -5,7 +5,7 @@ Tested on:
 
 Prerequisites:
 - Make sure the Hyper-V role is enabled in Windows 10/11
-- - Install the Windows Assessment and Deployment Kit (32-bit version). https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install#download-the-adk-for-windows-11-version-22h2
+- Install the Windows Assessment and Deployment Kit (32-bit version). https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install#download-the-adk-for-windows-11-version-22h2
 - Add the following location the the system path variable: C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\x86\Oscdimg
 ![Alt text](img/path.png)
 - Download the Windows 11 ISO and save the ISO to the following location: c:\iso
