@@ -8,14 +8,14 @@ packer {
   required_version = ">= 1.9.4"
   required_plugins {
     vmware = {
-      version = ">= 1.0.7"
+      version = ">= 1.0.11"
       source  = "github.com/hashicorp/vmware"
     }
   }
 
   required_plugins {
     windows-update = {
-      version = ">= 0.14.3"
+      version = ">= 0.15.0"
       source  = "github.com/rgl/windows-update"
     }
   }
