@@ -29,5 +29,4 @@ packer.exe fmt -var-file="$downloadfolder$packer_variable" "$downloadfolder$pack
 # packer.exe validate .
 
 # Packer build
-# .\packer.exe build -force -var-file="${$win11_downloadfolder}${packer_variable}" "${$win11_downloadfolder}${packer_config}"
 packer.exe build -force -var-file="$downloadfolder$packer_variable" -var "winrm_username=administrator" -var "winrm_password=ThisisagoodPassword!" "$downloadfolder$packer_config"
