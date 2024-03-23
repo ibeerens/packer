@@ -7,7 +7,7 @@ vm_cpus                 = "2"
 vm_cores                = "1"
 vm_memory               = "4096"
 vm_disk_controller_type = "nvme"
-vm_disk_size            = "32768"
+vm_disk_size            = "65536"
 vm_network_adapter_type = "e1000e"
 // Use the NAT Network
 vm_network         = "VMnet8"
